@@ -9,5 +9,14 @@
       or implied. See the License for the specific language governing permissions and limitations under
       the License.
       -->
-    <string name="app_name">AndroidDevChallenge</string>
+    <string name="app_name">Weather App</string>
+    <string name="by_hour">By hour</string>
+    <string name="next_seven_days">Next 7 days</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="partly_cloudy">Partly cloudy</string>
+    <string name="lightning_rainy">Lightning rainy</string>
+    <string name="rainy">Rainy</string>
+    <string name="sunny">Sunny</string>
+    <string name="snowy">Snowy</string>
+    <string name="pouring">Pouring</string>
 </resources>
