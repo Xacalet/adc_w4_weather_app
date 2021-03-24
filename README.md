@@ -6,7 +6,7 @@
 
 ## :scroll: Description
 
-An forecast weather app for Android fully written in Compose.
+A forecast weather app for Android fully written in Compose.
 
 ## :bulb: Motivation and Context
 
