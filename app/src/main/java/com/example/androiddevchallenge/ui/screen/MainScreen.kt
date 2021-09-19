@@ -17,17 +17,7 @@ package com.example.androiddevchallenge.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -36,13 +26,8 @@ import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,26 +43,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieAnimationSpec
-import com.airbnb.lottie.compose.rememberLottieAnimationState
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.androiddevchallenge.ForecastByTimeRangeUiData
 import com.example.androiddevchallenge.MainViewModel
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.TimeRange
 import com.example.androiddevchallenge.data.ForecastSummary
-import com.example.androiddevchallenge.ui.foundations.Chart
-import com.example.androiddevchallenge.ui.foundations.ChartConfiguration
-import com.example.androiddevchallenge.ui.foundations.ChartValueRange
-import com.example.androiddevchallenge.ui.foundations.RoundedHeaderBackground
-import com.example.androiddevchallenge.ui.foundations.Tab
-import com.example.androiddevchallenge.ui.foundations.TabIndicator
-import com.example.androiddevchallenge.ui.foundations.TabRow
-import com.example.androiddevchallenge.ui.foundations.WeatherPod
+import com.example.androiddevchallenge.ui.foundations.*
 import com.example.androiddevchallenge.ui.theme.Lato
 import com.example.androiddevchallenge.ui.theme.Montserrat
 import com.example.androiddevchallenge.ui.theme.rainColor
 import com.example.androiddevchallenge.ui.theme.temperatureColor
-import java.util.Locale
 import kotlin.math.roundToInt
 
 @Preview
@@ -109,8 +87,7 @@ fun MainScreen() {
 fun ForecastSummary(
     data: ForecastSummary
 ) {
-    val animationSpec = remember { LottieAnimationSpec.RawRes(data.weatherType.animatedIcon) }
-    val animationState = rememberLottieAnimationState(true, Integer.MAX_VALUE)
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(data.weatherType.animatedIcon))
     Box {
         RoundedHeaderBackground(
             modifier = Modifier
@@ -130,9 +107,9 @@ fun ForecastSummary(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     LottieAnimation(
-                        animationSpec,
-                        Modifier.size(100.dp),
-                        animationState
+                        composition = composition,
+                        modifier = Modifier.size(100.dp),
+                        iterations = LottieConstants.IterateForever
                     )
                     Spacer(Modifier.size(24.dp))
                     Text(
@@ -177,7 +154,7 @@ fun ForecastSummary(
                 )
                 Spacer(Modifier.size(4.dp))
                 Text(
-                    text = stringResource(data.weatherType.name).toUpperCase(Locale.getDefault()),
+                    text = stringResource(data.weatherType.name).uppercase(),
                     style = typography.subtitle1.copy(letterSpacing = 1.sp)
                 )
                 Spacer(Modifier.size(24.dp))

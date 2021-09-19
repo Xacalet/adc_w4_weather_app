@@ -134,11 +134,6 @@ fun AnimatedWeatherBean(modifier: Modifier = Modifier, data: WeatherBeanData) {
             )
         }
     }
-
-    /*Box(Modifier.graphicsLayer(rotationY = rotationY.value)) {
-        val innerRotationY = if (rotationY.value % 360f in (90f..270f)) 180f else 0f
-        WeatherBean(modifier.graphicsLayer(rotationY = innerRotationY), data)
-    }*/
 }
 
 @Composable

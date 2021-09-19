@@ -90,7 +90,7 @@ fun Chart(
             add(Offset(this@Canvas.size.width, bottomMargin))
         }
 
-        // Calculate control points for the Beizer curves
+        // Calculate control points for the Bezier curves
         val controlPoints1 = mutableListOf<PointF>()
         val controlPoints2 = mutableListOf<PointF>()
         for (i in 1 until points.size) {
